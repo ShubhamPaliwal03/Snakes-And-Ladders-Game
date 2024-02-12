@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snake And Ladders</title>
+        <style>
+        body
+        {
+            background-image: url('background.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #dice_img
+        {
+            height: 100px;
+            width: 100px;
+            border-radius: 10px;
+            outline: solid 1px black;
+        }
+        #dice
+        {
+            height: 100px;
+            width: 100px;
+            padding: 0px;
+            border-radius: 10px;
+            transition: transform 1s;
+        }
+        table
+        {
+            border-collapse: collapse;
+            border: solid 3px black;
+        }
+        td
+        {
+            border: solid 2px transparent;
+            height: 60px;
+            width: 60px;
+        }
+        #outer
+        {
+            position: relative;
+            top: 5vh;
+            left: 5vw;
+            background-image: url('gameboard.jpg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin-right: 10vw;
+        }
+        .tokens
+        {
+            height: 25px;
+            width: 25px;
+        }
+        #turn_msg
+        {
+            height: 60px;
+            width: 250px;
+            font-size: 28px;
+            margin-left: 100px;
+            background-color: lightyellow;
+            text-align: center;
+            padding-top: 25px;
+            border-radius: 10px;
+            color: red;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <table id="gameboard">
+            <tr>
+                <td id="_100"></td>
+                <td id="_99"></td>
+                <td id="_98"></td>
+                <td id="_97"></td>
+                <td id="_96"></td>
+                <td id="_95"></td>
+                <td id="_94"></td>
+                <td id="_93"></td>
+                <td id="_92"></td>
+                <td id="_91"></td>
+            </tr>
+            <tr>
+                <td id="_81"></td>
+                <td id="_82"></td>
+                <td id="_83"></td>
+                <td id="_84"></td>
+                <td id="_85"></td>
+                <td id="_86"></td>
+                <td id="_87"></td>
+                <td id="_88"></td>
+                <td id="_89"></td>
+                <td id="_90"></td>
+            </tr>
+            <tr>
+                <td id="_80"></td>
+                <td id="_79"></td>
+                <td id="_78"></td>
+                <td id="_77"></td>
+                <td id="_76"></td>
+                <td id="_75"></td>
+                <td id="_74"></td>
+                <td id="_73"></td>
+                <td id="_72"></td>
+                <td id="_71"></td>
+            </tr>
+            <tr>
+                <td id="_61"></td>
+                <td id="_62"></td>
+                <td id="_63"></td>
+                <td id="_64"></td>
+                <td id="_65"></td>
+                <td id="_66"></td>
+                <td id="_67"></td>
+                <td id="_68"></td>
+                <td id="_69"></td>
+                <td id="_70"></td>
+            </tr>
+            <tr>
+                <td id="_60"></td>
+                <td id="_59"></td>
+                <td id="_58"></td>
+                <td id="_57"></td>
+                <td id="_56"></td>
+                <td id="_55"></td>
+                <td id="_54"></td>
+                <td id="_53"></td>
+                <td id="_52"></td>
+                <td id="_51"></td>
+            </tr>
+            <tr>
+                <td id="_41"></td>
+                <td id="_42"></td>
+                <td id="_43"></td>
+                <td id="_44"></td>
+                <td id="_45"></td>
+                <td id="_46"></td>
+                <td id="_47"></td>
+                <td id="_48"></td>
+                <td id="_49"></td>
+                <td id="_50"></td>
+            </tr>
+            <tr>
+                <td id="_40"></td>
+                <td id="_39"></td>
+                <td id="_38"></td>
+                <td id="_37"></td>
+                <td id="_36"></td>
+                <td id="_35"></td>
+                <td id="_34"></td>
+                <td id="_33"></td>
+                <td id="_32"></td>
+                <td id="_31"></td>
+            </tr>
+            <tr>
+                <td id="_21"></td>
+                <td id="_22"></td>
+                <td id="_23"></td>
+                <td id="_24"></td>
+                <td id="_25"></td>
+                <td id="_26"></td>
+                <td id="_27"></td>
+                <td id="_28"></td>
+                <td id="_29"></td>
+                <td id="_30"></td>
+            </tr>
+            <tr>
+                <td id="_20"></td>
+                <td id="_19"></td>
+                <td id="_18"></td>
+                <td id="_17"></td>
+                <td id="_16"></td>
+                <td id="_15"></td>
+                <td id="_14"></td>
+                <td id="_13"></td>
+                <td id="_12"></td>
+                <td id="_11"></td>
+            </tr>
+            <tr>
+                <td id="_1"><img id="red_player_icon" class="tokens" src="red_token.png" alt=""><br><img id="blue_player_icon" class="tokens" src="blue_token.png" alt=""></td>
+                <td id="_2"></td>
+                <td id="_3"></td>
+                <td id="_4"></td>
+                <td id="_5"></td>
+                <td id="_6"></td>
+                <td id="_7"></td>
+                <td id="_8"></td>
+                <td id="_9"></td>
+                <td id="_10"></td>
+            </tr>
+        </table>
+    </div>
+    <button id="dice"><img id="dice_img" src="dice_1.png" alt=""></button>
+    <span id="turn_msg">Red Player's Turn</span>
+    <script>
+
+        // code for dice
+
+        let dice = document.getElementById('dice')
+
+        dice.addEventListener('click', rollDice)
+
+        function generateRandom(min, max)
+        {
+            return Math.ceil(Math.random() * (max - min) + min)
+        }
+
+        let dice_img = document.getElementById('dice_img')
+
+        let degree = 180
+
+        let dice_value
+
+        function rollDice()
+        {
+            dice_value = generateRandom(0,6)
+
+            dice_img.src = "dice_"+dice_value+".png"
+
+            dice.style.transform = "rotateX("+degree+"deg) rotateY("+degree+"deg)"
+
+            degree += 180
+
+            performAction()
+        }
+
+        let red_player_pos = 1
+
+        let blue_player_pos = 1
+
+        // code to maintain chance of every player
+
+        let i = 1
+
+        // get the object reference of the red player icon
+
+        const red_player_icon = document.getElementById('red_player_icon')
+
+        // get the object reference of the blue player icon
+
+        const blue_player_icon = document.getElementById('blue_player_icon')
+
+        function performAction()
+        {
+            if(i % 2 === 1) // red player's turn
+            {
+                // change the turn message, and its color
+
+                const turn_msg = document.getElementById('turn_msg')
+
+                turn_msg.innerText = "Blue Player's Turn"
+
+                turn_msg.style.color = "blue"
+
+                // get the object reference of the current cell
+
+                const current_cell = document.getElementById('_'+red_player_pos)
+
+                // remove the red player icon from the current cell
+
+                current_cell.removeChild(red_player_icon)
+
+                // update the current position of the red player as per the dice value
+
+                red_player_pos += dice_value
+
+                // get the object reference of the new cell
+                
+                const new_cell = document.getElementById('_'+red_player_pos)
+                
+                // add the red player icon to the new cell
+
+                new_cell.appendChild(red_player_icon)
+
+                ActionOnSnakeOrLadder(Number(new_cell.id.substr(1)))
+            }
+            else // blue player's turn
+            {
+                // change the turn message, and its color
+
+                const turn_msg = document.getElementById('turn_msg')
+
+                turn_msg.innerText = "Red Player's Turn"
+    
+                turn_msg.style.color = "red"
+
+                // get the object reference of the current cell
+
+                const current_cell = document.getElementById('_'+blue_player_pos)
+
+                // remove the blue player icon from the current cell
+
+                current_cell.removeChild(blue_player_icon)
+
+                // update the current position of the blue player as per the dice value
+
+                blue_player_pos += dice_value
+
+                // get the object reference of the new cell
+
+                const new_cell = document.getElementById('_'+blue_player_pos)
+
+                // add the blue player icon to the new cell
+
+                new_cell.appendChild(blue_player_icon)
+
+                ActionOnSnakeOrLadder(Number(new_cell.id.substr(1)))
+            }
+
+            i++
+        }
+    
+        // code to achieve the functionality of snakes and ladders
+        
+        // creating a map to store the starting and ending points of the ladders as key-value pairs.
+        
+        const ladders_map = new Map([[1, 38], [4, 14], [9, 31], [21, 42], [28, 84], [51, 67], [71,91], [80, 100]])
+
+        // creating a map to store the starting and ending points of the snakes as key-value pairs.
+        
+        const snakes_map = new Map([[17, 7], [62, 19], [54, 34], [64, 60], [87, 24], [93, 73], [95, 75], [98, 79]])
+        
+        function ActionOnSnakeOrLadder(cell_number)
+        {
+            console.log(cell_number)
+
+            if(ladders_map.has(cell_number)) // check if the cell has a ladder on it
+            {
+                const new_cell_number = Number(ladders_map.get(cell_number))
+                
+                console.log("You just stepped on a ladder! Jumping to cell "+new_cell_number)
+
+                removeFromAndMovePlayerTo(cell_number, new_cell_number)
+            }
+            else if(snakes_map.has(cell_number)) // check if the cell has a snake on it
+            {
+                const new_cell_number = Number(snakes_map.get(cell_number))
+
+                console.log("You just stepped on a snake! Jumping to cell "+new_cell_number)
+
+                removeFromAndMovePlayerTo(cell_number, new_cell_number)
+            }
+
+            function removeFromAndMovePlayerTo(prev_cell_number, new_cell_number)
+            {
+                let player_icon // to store the reference of the player icon
+
+                if(i % 2 == 1) // if it was red player's turn
+                {
+                    player_icon = document.getElementById('red_player_icon')
+
+                    // get the reference of the current cell
+
+                    const prev_cell = document.getElementById('_'+prev_cell_number)
+
+                    // remove the respective icon from the current cell
+
+                    prev_cell.removeChild(player_icon)
+
+                    red_player_pos = new_cell_number
+                }
+                else // if it was blue player's turn
+                {
+                    player_icon = document.getElementById('blue_player_icon')
+
+                    // get the reference of the current cell
+
+                    const prev_cell = document.getElementById('_'+prev_cell_number)
+
+                    // remove the respective icon from the current cell
+
+                    prev_cell.removeChild(player_icon)
+
+                    blue_player_pos = new_cell_number
+                }
+
+                // get the reference of the new cell
+
+                const new_cell = document.getElementById("_"+new_cell_number)
+
+                // add the respective player icon to the new cell
+
+                new_cell.appendChild(player_icon)
+            }
+        }
+
+    </script>
+</body>
+</html>
