@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="style2.css"> -->
+        <title>Snake And Ladders</title>
+</head>
+<body>
+    <!-- <script src="pleaserotate.js"></script> -->
+    <div id="outer" class="confetti-button-wrapper">
+        <button class="confetti-button" hidden></button>
+        <table id="gameboard">
+            <tr>
+                <td id="_100"></td>
+                <td id="_99"></td>
+                <td id="_98"></td>
+                <td id="_97"></td>
+                <td id="_96"></td>
+                <td id="_95"></td>
+                <td id="_94"></td>
+                <td id="_93"></td>
+                <td id="_92"></td>
+                <td id="_91"></td>
+            </tr>
+            <tr>
+                <td id="_81"></td>
+                <td id="_82"></td>
+                <td id="_83"></td>
+                <td id="_84"></td>
+                <td id="_85"></td>
+                <td id="_86"></td>
+                <td id="_87"></td>
+                <td id="_88"></td>
+                <td id="_89"></td>
+                <td id="_90"></td>
+            </tr>
+            <tr>
+                <td id="_80"></td>
+                <td id="_79"></td>
+                <td id="_78"></td>
+                <td id="_77"></td>
+                <td id="_76"></td>
+                <td id="_75"></td>
+                <td id="_74"></td>
+                <td id="_73"></td>
+                <td id="_72"></td>
+                <td id="_71"></td>
+            </tr>
+            <tr>
+                <td id="_61"></td>
+                <td id="_62"></td>
+                <td id="_63"></td>
+                <td id="_64"></td>
+                <td id="_65"></td>
+                <td id="_66"></td>
+                <td id="_67"></td>
+                <td id="_68"></td>
+                <td id="_69"></td>
+                <td id="_70"></td>
+            </tr>
+            <tr>
+                <td id="_60"></td>
+                <td id="_59"></td>
+                <td id="_58"></td>
+                <td id="_57"></td>
+                <td id="_56"></td>
+                <td id="_55"></td>
+                <td id="_54"></td>
+                <td id="_53"></td>
+                <td id="_52"></td>
+                <td id="_51"></td>
+            </tr>
+            <tr>
+                <td id="_41"></td>
+                <td id="_42"></td>
+                <td id="_43"></td>
+                <td id="_44"></td>
+                <td id="_45"></td>
+                <td id="_46"></td>
+                <td id="_47"></td>
+                <td id="_48"></td>
+                <td id="_49"></td>
+                <td id="_50"></td>
+            </tr>
+            <tr>
+                <td id="_40"></td>
+                <td id="_39"></td>
+                <td id="_38"></td>
+                <td id="_37"></td>
+                <td id="_36"></td>
+                <td id="_35"></td>
+                <td id="_34"></td>
+                <td id="_33"></td>
+                <td id="_32"></td>
+                <td id="_31"></td>
+            </tr>
+            <tr>
+                <td id="_21"></td>
+                <td id="_22"></td>
+                <td id="_23"></td>
+                <td id="_24"></td>
+                <td id="_25"></td>
+                <td id="_26"></td>
+                <td id="_27"></td>
+                <td id="_28"></td>
+                <td id="_29"></td>
+                <td id="_30"></td>
+            </tr>
+            <tr>
+                <td id="_20"></td>
+                <td id="_19"></td>
+                <td id="_18"></td>
+                <td id="_17"></td>
+                <td id="_16"></td>
+                <td id="_15"></td>
+                <td id="_14"></td>
+                <td id="_13"></td>
+                <td id="_12"></td>
+                <td id="_11"></td>
+            </tr>
+            <tr>
+                <td id="_1"><img id="red_player_icon" class="tokens" src="images/red_token.png" alt=""><br><img id="blue_player_icon" class="tokens" src="images/blue_token.png" alt=""></td>
+                <td id="_2"></td>
+                <td id="_3"></td>
+                <td id="_4"></td>
+                <td id="_5"></td>
+                <td id="_6"></td>
+                <td id="_7"></td>
+                <td id="_8"></td>
+                <td id="_9"></td>
+                <td id="_10"></td>
+            </tr>
+        </table>
+    </div>
+    <button id="dice"><img id="dice_img" src="images/dice_1.png" alt=""></button>
+    <span id="message">Red Player's Turn</span>
+    <script src="script_test.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
+
+            var end = Date.now() + (15 * 250);
+
+            var colors = ['#0007fff', '#ff1493'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                }
+            );
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+            }());
+        });
+    </script>
+</body>
+</html>
