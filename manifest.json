@@ -1,9 +1,28 @@
 {
-  "name": "Snaky Climb | Snakes and Ladders Game",
-  "short_name": "Snaky Climb",
+  "name": "SnakyClimb",
+  "short_name": "SnakyClimb",
   "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
-  "orientation": "landscape"
+  "scope": "./",
+  "lang": "en-US",
+  "dir": "ltr",
+  "version": "1.0.0",
+  "display": "fullscreen",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "description": "A fun and interactive Snakes and Ladders game for all ages.",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "favicons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "favicons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
 }
