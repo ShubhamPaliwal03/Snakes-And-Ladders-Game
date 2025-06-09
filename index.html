@@ -9,7 +9,7 @@
     <title>Snaky Climb | Snakes And Ladders Game</title>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/pleaserotate@2.2.0/lib/pleaserotate.min.js"></script>
+    <script src="pleaserotate.js"></script>
     <div id="outer" class="confetti-button-wrapper">
         <button class="confetti-button" hidden></button>
         <table id="gameboard">
@@ -141,18 +141,10 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
 
-        document.addEventListener('DOMContentLoaded', () => {
+        PleaseRotateOptions = {
 
-            const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
-
-            if (isMobile) {
-                PleaseRotate.start({
-                    forcePortrait: false,
-                    forceLandscape: true,
-                    message: "Please rotate your device to Landscape mode."
-                });
-            }
-        });
+            forcePortrait: true
+        };
 
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
