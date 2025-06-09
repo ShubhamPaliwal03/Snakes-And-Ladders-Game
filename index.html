@@ -152,6 +152,15 @@
             forcePortrait: true
         };
 
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                window.scrollTo(0, 1);
+
+            }, 100);
+        });
+
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
             var end = Date.now() + (15 * 250);
@@ -159,14 +168,18 @@
             var colors = ['#0007fff', '#ff1493'];
 
             (function frame() {
+
                 confetti({
+
                     particleCount: 2,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
                     colors: colors
                 });
+
                 confetti({
+
                     particleCount: 2,
                     angle: 120,
                     spread: 55,
@@ -176,8 +189,10 @@
             );
 
             if (Date.now() < end) {
+
                 requestAnimationFrame(frame);
             }
+
             }());
         });
     </script>
