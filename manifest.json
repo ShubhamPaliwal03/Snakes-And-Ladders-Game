@@ -1,0 +1,9 @@
+{
+  "name": "Snaky Climb | Snakes and Ladders Game",
+  "short_name": "Snaky Climb",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "landscape"
+}
