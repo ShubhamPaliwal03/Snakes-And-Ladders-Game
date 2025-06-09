@@ -152,14 +152,16 @@
             forcePortrait: true
         };
 
-        window.addEventListener("load", () => {
+        (function scrollToCenter() {
 
-            setTimeout(() => {
+            const contentHeight = document.documentElement.scrollHeight;
+            const viewportHeight = window.innerHeight;
 
-                window.scrollTo(7, 7);
+            const scrollY = (contentHeight - viewportHeight) / 2;
+            window.scrollTo({ top: scrollY, behavior: "smooth" });
+            
+        })()
 
-            }, 1000);
-        });
 
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
