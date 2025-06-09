@@ -4,6 +4,11 @@ let dice = document.getElementById('dice')
 
 dice.addEventListener('click', rollDice)
 
+// Uncomment the following lines if you want to transform the dice button into a restart game button :-
+
+// let diceButtonPurpose = 'rollDice'
+// dice.addEventListener('click', () => diceButtonPurpose == 'rollDice' ? rollDice() : window.location.reload())
+
 function generateRandom(min, max)
 {
     return Math.ceil(Math.random() * (max - min) + min)
@@ -451,6 +456,16 @@ function playerWon()
     victorySound.play()
 
     dice.disabled = true
+
+    // Uncomment the following lines if you want to transform the dice button into a restart game button :-
+
+    // transform the dice button into the restart game button
+    
+    // diceButtonPurpose = 'restartGame'
+    
+    // dice.innerHTML = '<i class="fa-solid fa-arrow-rotate-right"></i>'
+    
+    // dice.disabled = false
 
     return
 }
