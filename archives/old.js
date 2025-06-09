@@ -1,10 +1,3 @@
-// if (window.matchMedia("(orientation: portrait)").matches) {
-
-//     // you're in PORTRAIT mode
-
-//     alert("Please turn your device to landscape mode!");
-// }
-
 // code for working of dice
 
 let dice = document.getElementById('dice')
@@ -95,9 +88,12 @@ function rollDice()
 // for testing purposes
 
 // setInterval(() => {
+
 //     if(dice.disabled == false){
+
 //         rollDice();
 //     }
+
 // }, 2000)
 
 let red_player_pos = 1
@@ -178,6 +174,8 @@ async function performAction()
 
         if(target_pos < 100)
         {
+            await new Promise(resolve => setTimeout(resolve, 500)) // wait for 500ms (0.5s)
+
             // check for any snake or ladder at the target index
 
             ActionIfSnakeOrLadder(target_pos)
@@ -232,6 +230,8 @@ async function performAction()
 
         if(target_pos < 100)
         {
+            await new Promise(resolve => setTimeout(resolve, 500)) // wait for 500ms (0.5s)
+
             // check for any snake or ladder at the target index
     
             ActionIfSnakeOrLadder(target_pos)
@@ -312,107 +312,59 @@ function ActionIfSnakeOrLadder(cell_number)
 
         snakeBiteSound.play()
 
-        // climbUpOrSlideDown("snake", cell_number, new_cell_number)
+        climbUpOrSlideDown("snake", cell_number, new_cell_number)
 
-        removeFromAndMovePlayerTo(cell_number, new_cell_number)
+        // removeFromAndMovePlayerTo(cell_number, new_cell_number)
     }
 }
 
-// const snakesPathMap = new Map([17, [16, 5, 6]], [54, [48, 34]], [62, [58, 42, 43, 38, 23, 18, 19]], [64, [63, 62, 59, 60]], [87, [74, 67, 66, 55, 46, 45, 44, 36, 25, 24]], [93, [88, 72, 73]], [95, [87, 86, 75]], [98, [83, 78, 79]])
+const snakesPathMap = new Map([
 
-// async function climbUpOrSlideDown(snake_or_ladder, current_cell_number, target_cell_number)
-// {
-//     if(i % 2 == 1) // if it was red player's turn
-//     {
-//         if(target_cell_number <= 100)
-//         {
-//             // check if the player has reached the 100 position with the exact number of dice value
+    [17, [16, 5, 6]],
+    [54, [48, 34]],
+    [62, [58, 42, 43, 38, 23, 18, 19]],
+    [64, [63, 62, 59, 60]],
+    [87, [74, 67, 66, 55, 46, 45, 44, 36, 25, 24]],
+    [93, [88, 72, 73]],
+    [95, [87, 86, 75]],
+    [98, [83, 78, 79]]
+])
 
-//             for(let pos = current_cell_number; pos < target_cell_number; pos++)
-//             {
-//                 // create a promise that resolves after 500ms,
-//                 // so that the execution of the loop is paused until every 'setTimeout' delay is completed
-//                 // this is done to ensure there is no dom manipulation errors, which would have been
-//                 // produced due to the asyncronous nature of JavaScript
+async function climbUpOrSlideDown(snake_or_ladder, current_cell_number, target_cell_number)
+{
+    if (snake_or_ladder == 'snake') {
 
-//                 await new Promise(resolve => setTimeout(resolve, 500)) // wait for 500ms (0.5s)
-                
-//                 removeFromAndMovePlayerTo(pos, pos+1)
+        // if the player stepped on a snake, then slide down the snake
 
-//                 // red_player_pos = pos
-                
-//                 jumpSound.play()
-//             }
+        console.log("Sliding down the snake from cell "+current_cell_number+" to cell "+target_cell_number)
 
-//             if(target_cell_number == 100)
-//             {
-//                 // change the message, and its color
+        // get the path of the snake
         
-//                 message.innerText = "Red Player Won!"
+        const path = snakesPathMap.get(current_cell_number)
 
-//                 message.style.color = "red"
-        
-//                 playerWon()
-//             }
-//         }
-//         else
-//         {
-//             toggleMessage()
-//         }
+        console.log("Path of the snake: ", path)
 
-//         if(target_cell_number < 100)
-//         {
-//             // change the turn message, and its color
+        // remove the player icon from the current cell and move it to the first cell of the path
+
+        removeFromAndMovePlayerTo(current_cell_number, path[0])
+
+        // iterate through the path and move the player icon
+
+        for(let pos = 0; pos < path.length - 2; pos++)
+        {
+            // create a promise that resolves after 500ms,
+            // so that the execution of the loop is paused until every 'setTimeout' delay is completed
+            // this is done to ensure there is no dom manipulation errors, which would have been
+            // produced due to the asyncronous nature of JavaScript
+
+            await new Promise(resolve => setTimeout(resolve, 500)) // wait for 500ms (0.5s)
             
-//             toggleMessage()
-//         }
-//     }
-//     else // if it was blue player's turn
-//     {
-//         if(target_cell_number <= 100)
-//         {
-//             // check if the player has reached the 100 position with the exact number of dice value
+            removeFromAndMovePlayerTo(path[pos], path[pos+1])
 
-//             for(let pos = current_cell_number; pos < target_cell_number; pos++)
-//             {
-//                 // create a promise that resolves after 500ms,
-//                 // so that the execution of the loop is paused until every 'setTimeout' delay is completed
-//                 // this is done to ensure there is no dom manipulation errors, which would have been
-//                 // produced due to the asyncronous nature of JavaScript
-
-//                 await new Promise(resolve => setTimeout(resolve, 500)) // wait for 500ms (0.5s)
-                
-//                 removeFromAndMovePlayerTo(pos, pos+1)
-
-//                 // blue_player_pos = pos
-                
-//                 jumpSound.play()
-//             }
-
-//             if(target_cell_number == 100)
-//             {
-//                 // change the message, and its color
-        
-//                 message.innerText = "Blue Player Won!"
-
-//                 message.style.color = "blue"
-        
-//                 playerWon()
-//             }
-//         }
-//         else
-//         {
-//             toggleMessage()
-//         }
-
-//         if(target_cell_number < 100)
-//         {
-//             // change the turn message, and its color
-            
-//             toggleMessage()
-//         }
-//     }
-// }
+            jumpSound.play()
+        }
+    }
+}
 
 function removeFromAndMovePlayerTo(current_cell_number, target_cell_number)
 {
@@ -420,12 +372,16 @@ function removeFromAndMovePlayerTo(current_cell_number, target_cell_number)
 
     if(i % 2 == 1) // if it was red player's turn
     {
+        console.log("Removing Red Player's Token from cell "+current_cell_number)
+
         player_icon = document.getElementById('red_player_icon')
 
         red_player_pos = target_cell_number
     }
     else // if it was blue player's turn
     {
+        console.log("Removing Blue Player's Token from cell "+current_cell_number)
+
         player_icon = document.getElementById('blue_player_icon')
 
         blue_player_pos = target_cell_number
@@ -434,6 +390,8 @@ function removeFromAndMovePlayerTo(current_cell_number, target_cell_number)
     // get the reference of the current cell
 
     let current_cell = document.getElementById('_'+current_cell_number)
+
+    console.log(" and moving it to cell "+target_cell_number)
 
     // remove the respective icon from the current cell
 

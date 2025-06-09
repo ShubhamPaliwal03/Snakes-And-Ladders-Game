@@ -6,6 +6,8 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    overflow: hidden;
 }
 #dice_img
 {
@@ -35,13 +37,14 @@ td
 }
 #outer
 {
-    position: relative;
-    top: 5vh;
-    left: 5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
     background-image: url('images/gameboard.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    margin-right: 10vw;
 }
 .tokens
 {
@@ -51,6 +54,8 @@ td
 #red_player_icon
 {
     margin-right: 2px;
+    height: 22.5px;
+    width: 22.5px;
 }
 #message
 {
@@ -61,7 +66,6 @@ td
     height: 170px;
     width: 280px;
     font-size: 30px;
-    margin-left: 100px;
     background-color: lightyellow;
     text-align: center;
     border-radius: 10px;
@@ -80,7 +84,155 @@ td
     pointer-events: none;
 }
 
-@media (max-width: 1200px) and (orientation: landscape)
+@media (max-width: 1280px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 80px;
+        width: 80px;
+        border-radius: 8px;
+    }
+    #dice
+    {
+        height: 80px;
+        width: 80px;
+        border-radius: 8px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 40px;
+        width: 40px;
+    }
+    #outer
+    {
+        gap: 100px;
+    }
+    .tokens
+    {
+        height: 15px;
+        width: 15px;
+    }
+    #red_player_icon
+    {
+        height: 13.5px;
+        width: 13.5px;
+    }
+    #message
+    {
+        height: 150px;
+        width: 250px;
+        font-size: 20px;
+        padding: 10px;
+    }
+    #loading-animation
+    {
+        scale: 0.8;
+        position: relative;
+        top: -40px;
+    }
+}
+
+@media (max-width: 1024px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 70px;
+        width: 70px;
+        border-radius: 7px;
+    }
+    #dice
+    {
+        height: 70px;
+        width: 70px;
+        border-radius: 7px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 35px;
+        width: 35px;
+    }
+    #outer
+    {
+        gap: 80px;
+    }
+    .tokens
+    {
+        height: 12px;
+        width: 12px;
+    }
+    #red_player_icon
+    {
+        height: 10.8px;
+        width: 10.8px;
+    }
+    #message
+    {
+        height: 130px;
+        width: 220px;
+        font-size: 18px;
+        padding: 10px;
+    }
+    #loading-animation
+    {
+        scale: 0.6;
+        position: relative;
+        top: -40px;
+    }
+    
+}
+
+@media (max-width: 880px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 60px;
+        width: 60px;
+        border-radius: 6px;
+    }
+    #dice
+    {
+        height: 60px;
+        width: 60px;
+        border-radius: 6px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 30px;
+        width: 30px;
+    }
+    #outer
+    {
+        gap: 70px;
+    }
+    .tokens
+    {
+        height: 10px;
+        width: 10px;
+    }
+    #red_player_icon
+    {
+        height: 9px;
+        width: 9px;
+    }
+    #message
+    {
+        height: 110px;
+        width: 200px;
+        font-size: 16px;
+        padding: 10px;
+    }
+    #loading-animation
+    {
+        scale: 0.6;
+        position: relative;
+        top: -40px;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape)
 {
     #dice_img
     {
@@ -102,11 +254,238 @@ td
     }
     #outer
     {
-        top: 8vh;
-        left: 2vw;
-        background-image: url('images/gameboard.jpg');
-        background-repeat: no-repeat;
-        margin-right: 10vw;
+        gap: 60px;
+    }
+    .tokens
+    {
+        height: 8px;
+        width: 8px;
+    }
+    #red_player_icon
+    {
+        height: 7.2px;
+        width: 7.2px;
+    }
+    #message
+    {
+        height: 100px;
+        width: 180px;
+        font-size: 15px;
+        padding: 10px;
+    }
+    #loading-animation
+    {
+        scale: 0.5;
+        position: relative;
+        top: -40px;
+    }
+    
+}
+
+@media (max-width: 680px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 45px;
+        width: 45px;
+        border-radius: 4.5px;
+    }
+    #dice
+    {
+        height: 45px;
+        width: 45px;
+        border-radius: 4.5px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 22px;
+        width: 22px;
+    }
+    #outer
+    {
+        gap: 50px;
+    }
+    .tokens
+    {
+        height: 8px;
+        width: 8px;
+    }
+    #red_player_icon
+    {
+        height: 7.2px;
+        width: 7.2px;
+    }
+    #message
+    {
+        height: 90px;
+        width: 170px;
+        font-size: 15px;
+        padding: 10px;
+    }
+    #loading-animation
+    {
+        scale: 0.5;
+        position: relative;
+        top: -40px;
+    }
+    
+}
+
+@media (max-width: 600px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+    }
+    #dice
+    {
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 20px;
+        width: 20px;
+    }
+    #outer
+    {
+        gap: 40px;
+    }
+    .tokens
+    {
+        height: 6px;
+        width: 6px;
+    }
+    #red_player_icon
+    {
+        height: 5.4px;
+        width: 5.4px;
+    }
+    #message
+    {
+        height: 80px;
+        width: 150px;
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 530px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 35px;
+        width: 35px;
+        border-radius: 3.5px;
+    }
+    #dice
+    {
+        height: 35px;
+        width: 35px;
+        border-radius: 3.5px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 18px;
+        width: 18px;
+    }
+    #outer
+    {
+        gap: 30px;
+    }
+    .tokens
+    {
+        height: 5px;
+        width: 5px;
+    }
+    #red_player_icon
+    {
+        height: 4.5px;
+        width: 4.5px;
+    }
+    #message
+    {
+        height: 70px;
+        width: 130px;
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 460px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 30px;
+        width: 30px;
+        border-radius: 3px;
+    }
+    #dice
+    {
+        height: 30px;
+        width: 30px;
+        border-radius: 3px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 15px;
+        width: 15px;
+    }
+    #outer
+    {
+        gap: 20px;
+    }
+    .tokens
+    {
+        height: 4px;
+        width: 4px;
+    }
+    #red_player_icon
+    {
+        height: 3.6px;
+        width: 3.6px;
+    }
+    #message
+    {
+        height: 60px;
+        width: 120px;
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* old media queries */
+
+/* @media (max-width: 1200px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+    }
+    #dice
+    {
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 25px;
+        width: 25px;
+    }
+    #outer
+    {
+        gap: 50px;
     }
     .tokens
     {
@@ -118,7 +497,6 @@ td
         height: 120px;
         width: 200px;
         font-size: 25px;
-        margin-left: 50px;
         padding: 10px;
     }
     #loading-animation
@@ -127,4 +505,47 @@ td
         position: relative;
         top: -40px;
     }
-}
+} */
+
+/* @media (max-width: 720px) and (orientation: landscape)
+{
+    #dice_img
+    {
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+    }
+    #dice
+    {
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+    }
+    td
+    {
+        border: solid 2px transparent;
+        height: 20px;
+        width: 20px;
+    }
+    #outer
+    {
+        gap: 30px;
+    }
+    .tokens
+    {
+        height: 7px;
+        width: 7px;
+    }
+    #message
+    {
+        height: 90px;
+        width: 170px;
+        font-size: 15px;
+    }
+    #loading-animation
+    {
+        scale: 0.5;
+        position: relative;
+        top: -40px;
+    }
+} */
