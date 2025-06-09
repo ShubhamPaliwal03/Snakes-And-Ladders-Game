@@ -152,16 +152,10 @@
             forcePortrait: true
         };
 
-        (function scrollToCenter() {
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
 
-            const contentHeight = document.documentElement.scrollHeight;
-            const viewportHeight = window.innerHeight;
-
-            const scrollY = (contentHeight - viewportHeight) / 2;
-            window.scrollTo({ top: scrollY, behavior: "smooth" });
-            
-        })()
-
+            document.body.style.overflow = "hidden";
+        }
 
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
