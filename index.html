@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <!-- <link rel="stylesheet" href="style2.css"> -->
-        <title>Snake And Ladders</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="style2.css"> -->
+    <title>Snaky Climb | Snakes And Ladders Game</title>
 </head>
 <body>
-    <!-- <script src="pleaserotate.js"></script> -->
+    <script src="pleaserotate.js"></script>
     <div id="outer" class="confetti-button-wrapper">
         <button class="confetti-button" hidden></button>
         <table id="gameboard">
@@ -139,6 +140,20 @@
     <script src="script_test.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                PleaseRotate.start({
+                    forcePortrait: false,
+                    forceLandscape: true,
+                    message: "Please rotate your device to Landscape mode."
+                });
+            }
+        });
+
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
             var end = Date.now() + (15 * 250);
