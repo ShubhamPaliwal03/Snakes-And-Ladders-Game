@@ -152,10 +152,7 @@
             forcePortrait: true
         };
 
-        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-
-            document.body.style.overflow = "hidden";
-        }
+        document.body.style.overflow = (window.matchMedia('(display-mode: fullscreen)').matches || document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) ? 'hidden' : 'auto';
 
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
