@@ -9,7 +9,7 @@
         onHide: function(){},
         onShow: function(){},
         forcePortrait: false,
-        message: "Please Rotate Your Device",
+        message: "Please Rotate Your Device To Landscape Mode!",
         // subMessage: "(or click to continue)",
         // allowClickBypass: true,
         subMessage: "",

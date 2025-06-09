@@ -5,7 +5,7 @@ body
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
 }
 #dice_img
 {
@@ -47,6 +47,10 @@ td
 {
     height: 25px;
     width: 25px;
+}
+#red_player_icon
+{
+    margin-right: 2px;
 }
 #message
 {

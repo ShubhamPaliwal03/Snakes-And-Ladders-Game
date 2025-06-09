@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     <link rel="manifest" href="manifest.json">
@@ -123,7 +122,7 @@
                 <td id="_11"></td>
             </tr>
             <tr>
-                <td id="_1"><img id="red_player_icon" class="tokens" src="images/red_token.png" alt=""><br><img id="blue_player_icon" class="tokens" src="images/blue_token.png" alt=""></td>
+                <td id="_1"><img id="red_player_icon" class="tokens" src="images/red_token.png" alt=""><img id="blue_player_icon" class="tokens" src="images/blue_token.png" alt=""></td>
                 <td id="_2"></td>
                 <td id="_3"></td>
                 <td id="_4"></td>
@@ -146,6 +145,15 @@
 
             forcePortrait: true
         };
+
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+
+                window.scrollTo(0, 1);
+                
+            }, 100);
+        });
 
         document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
 
